@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: n8n
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+      - key: N8N_PORT
+        value: 3000
+      - key: DB_TYPE
+        value: sqlite
+      - key: DB_PATH
+        value: /data/database.sqlite
+      - key: N8N_USER_FOLDER
+        value: /data
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
